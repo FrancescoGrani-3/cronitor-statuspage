@@ -1,4 +1,4 @@
-import styled, { ServerStyleSheet, ThemeProvider } from 'styled-components'
+import { ThemeProvider } from 'styled-components'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-vis/dist/style.css';
 

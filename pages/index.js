@@ -1,8 +1,6 @@
-import { Container, Card, } from 'react-bootstrap'
-import styled from 'styled-components'
+import { Container } from 'react-bootstrap'
 
 import { listMonitorActivities, listMonitorPings, listMonitors } from '../api/monitors'
-import Services from '../components/services';
 
 const Landing = (props) => {
   const { monitors } = props.data
