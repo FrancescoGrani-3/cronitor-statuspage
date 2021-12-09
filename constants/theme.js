@@ -19,15 +19,16 @@ const theme = {
 };
 
 export const GlobalStyle = createGlobalStyle`
-  @media (min-width: 1200px) {
-    .container, .container-lg, .container-md, .container-sm, .container-xl {
-      max-width: 900px;
-    }
-  }
 
   @media (min-width: 992px) {
     .container, .container-lg, .container-md, .container-sm {
       max-width: 700px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .container, .container-lg, .container-md, .container-sm, .container-xl {
+      max-width: 800px;
     }
   }
 

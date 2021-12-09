@@ -13,7 +13,7 @@ const Uptime = ({ monitor }) => {
 
     return (
         <Service className=''>
-            <Heading variant={6} className=''>
+            <Heading variant={6} className='mb-1'>
                 Uptime
             </Heading>
             <Text muted className='pb-2'>{calculateUptime().toFixed(3)}% uptime</Text>

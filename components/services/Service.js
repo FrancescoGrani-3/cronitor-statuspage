@@ -9,7 +9,7 @@ import Heading from '../typography/Heading'
 const Service = ({ monitor }) => {
 
     return (
-        <StyledCard className='mb-4'>
+        <StyledCard className='mt-4 mb-4'>
           <Card.Header>
             <StatusIndicator size='1x' up={monitor.latest_event.event === 'req-ok'} />
             <Heading variant={5} className='mx-2'>{monitor.name}</Heading>

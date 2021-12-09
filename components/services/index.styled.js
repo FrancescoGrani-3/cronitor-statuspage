@@ -12,21 +12,33 @@ export const Service = styled.div`
 `
 
 export const Pings = styled.div`
-  display: flex;
-  flex-wrap: nowrap;
-  white-space: nowrap;
-  font-size: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    font-size: 0;
 `
 
 
 export const Ping = styled.span`
-  background-color: ${p => p.status === 'ok' ? p.theme.colors.green : p.theme.colors.red};
-  margin-right: 3px;
-  display: inline-flex;
-  height: 40px;
-  border-radius: 5px;
-  padding: 0 1px;
-  width: 100%;
+    background-color: ${p => p.status === 'ok' ? p.theme.colors.green : p.theme.colors.red};
+    display: inline-flex;
+    height: 40px;
+    border-radius: 25px;
+    padding: 0 1px;
+    width: 100%;
+    margin-right: 2px;
+
+    @media (min-width: 576px) {
+        margin-right: 2px;
+    }
+
+    @media (min-width: 768px) {
+        margin-right: 3px;
+    }
+
+    @media (min-width: 1200px) {
+        margin-right: 5px;
+    }
 `
 
 export const Circle = styled.div`
