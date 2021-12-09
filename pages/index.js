@@ -1,5 +1,6 @@
 import { Container } from 'react-bootstrap'
 
+import Services from '../components/services'
 import { listMonitorActivities, listMonitorPings, listMonitors } from '../api/monitors'
 
 const Landing = (props) => {

@@ -3,8 +3,8 @@ import { Card } from 'react-bootstrap'
 
 export const Service = styled.div`
     background-color: ${p => p.theme.colors.card.body};
-    ${p => !p.noBorder && `border-bottom: 1px solid #ccc;`}
-    padding: 1rem 2rem;
+    ${p => !p.noBorder && `border-bottom: 1px solid #e9e9e9;`}
+    padding: 1.5rem 2rem;
 
     &:last-child {
         border: none;
@@ -58,9 +58,10 @@ export const StyledCard = styled(Card)`
     border-radius: ${p => p.theme.sizes.card.radius}px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    padding: 1rem 2rem;
-    border: none;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid #e9e9e9;
     display: flex;
+    background: transparent;
   }
 
   .card-footer {

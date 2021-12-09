@@ -12,7 +12,7 @@ const Service = ({ monitor }) => {
         <StyledCard className='mb-4'>
           <Card.Header>
             <StatusIndicator size='1x' up={monitor.latest_event.event === 'req-ok'} />
-            <Heading variant={6} className='mx-2'>{monitor.name}</Heading>
+            <Heading variant={5} className='mx-2'>{monitor.name}</Heading>
           </Card.Header>
           <StyledCardBody>
             <Uptime monitor={monitor} />
