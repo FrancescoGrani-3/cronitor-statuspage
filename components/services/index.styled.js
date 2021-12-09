@@ -11,16 +11,6 @@ export const Service = styled.div`
     }
 `
 
-
-export const StyledCardBody = styled(Card.Body)`
-  padding: 0;
-  border-radius: ${p => p.theme.sizes.card.radius}px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-
-  overflow: hidden;
-`
-
 export const Pings = styled.div`
   display: flex;
   flex-wrap: nowrap;
@@ -47,4 +37,42 @@ export const Circle = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`
+
+
+export const StyledCardBody = styled(Card.Body)`
+  padding: 0;
+  border-radius: ${p => p.theme.sizes.card.radius}px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+
+  overflow: hidden;
+`
+
+export const StyledCard = styled(Card)`
+  border-radius: ${p => p.theme.sizes.card.radius}px;
+  border: none;
+  box-shadow: 2px 2px 5px #2222;
+
+  .card-header {
+    border-radius: ${p => p.theme.sizes.card.radius}px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: 1rem 2rem;
+    border: none;
+    display: flex;
+  }
+
+  .card-footer {
+    border-radius: ${p => p.theme.sizes.card.radius}px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+`
+
+export const Header = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 `
