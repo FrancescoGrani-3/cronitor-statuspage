@@ -13,6 +13,6 @@ fetchAPI.defaults.headers = {
 
 fetchAPI.defaults.timeout = 5000;
 // fetchAPI.defaults.withCredentials = true;
-fetchAPI.defaults.headers['Authorization'] = 'Basic ' + new Buffer(CRONITOR_API_KEY + ':').toString('base64')
+fetchAPI.defaults.headers['Authorization'] = 'Basic ' + new Buffer.from(CRONITOR_API_KEY + ':').toString('base64')
 
 export default fetchAPI;
