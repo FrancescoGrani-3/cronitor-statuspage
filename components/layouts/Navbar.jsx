@@ -6,7 +6,6 @@ import Text from "../typography/Text"
 
 const Wrapper = styled.div`
     padding: 2rem 0;
-    background-color: red;
 `
 
 const CustomNavbar = (props) => {
@@ -21,8 +20,7 @@ const CustomNavbar = (props) => {
                     <Text muted className='mx-2'>Status</Text>
                     </Nav>
                     <Nav className="ml-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#link">Link</Nav.Link>
+                        <Nav.Link href="#home">Support</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>

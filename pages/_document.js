@@ -1,8 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import styled, { ServerStyleSheet, ThemeProvider } from 'styled-components'
 
-import Layouts from '../components/layouts'
-
 class MyDocument extends Document {
     static async getInitialProps(ctx) {
         const sheet = new ServerStyleSheet()
@@ -35,9 +33,7 @@ class MyDocument extends Document {
         return (
             <Html>
                 <Head />
-                <Layouts>
-                    <Main />
-                </Layouts>
+                <Main />
                 <NextScript />
             </Html>
         )

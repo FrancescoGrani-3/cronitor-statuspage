@@ -27,7 +27,7 @@ export const GlobalStyle = createGlobalStyle`
 
   @media (min-width: 992px) {
     .container, .container-lg, .container-md, .container-sm {
-      max-width: 600px;
+      max-width: 700px;
     }
   }
 
