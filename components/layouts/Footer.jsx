@@ -21,11 +21,9 @@ const Footer = props => {
                     <a className='mx-1' href="https://cronitor.io">
                         <Heading variant={6}>Cronitor</Heading>
                     </a>
-                </StyledPowered>
-                <StyledPowered>
-                    <Text>Status page by</Text>
+                    <Text>and</Text>
                     <a className='mx-1' href="https://github.com/thevahidal/cronitor-statuspage">
-                        <Heading variant={6}>thevahidal</Heading>
+                        <Heading variant={6}>Cronitor StatusPage</Heading>
                     </a>
                 </StyledPowered>
             </Container>

@@ -1,5 +1,12 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { Card } from 'react-bootstrap'
+
+const pulse = keyframes`
+    100% {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+`
 
 export const Service = styled.div`
     background-color: ${p => p.theme.colors.card.body};
@@ -49,6 +56,28 @@ export const Circle = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 2;
+    
+  &.pulse {
+
+      &:before,
+      &:after {
+          content: "";
+          position: absolute;
+          width: ${p => p.size / 1.25}px;
+          height: ${p => p.size / 1.25}px;
+          background-color: ${p => p.up ? p.theme.colors.green : p.theme.colors.red};
+          border-radius: 50%;
+          z-index: -1;
+          opacity: 0.7;
+      }
+      &:before {
+          animation: ${pulse} 2s ease-out infinite;
+      }
+      &:after{
+          animation: ${pulse} 2s 1s ease-out infinite;
+      }
+  }
 `
 
 
@@ -89,3 +118,4 @@ export const Header = styled.div`
   justify-content: center;
   flex-direction: column;
 `
+

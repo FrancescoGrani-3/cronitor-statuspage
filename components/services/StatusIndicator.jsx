@@ -2,7 +2,7 @@ import { Check, X } from 'react-feather';
 
 import { Circle } from './index.styled'
 
-const StatusIndicator = ({ up, size }) => {
+const StatusIndicator = ({ up, size, noPulse }) => {
     const getSize = () => {
         switch (size) {
             case '1x':
@@ -29,7 +29,7 @@ const StatusIndicator = ({ up, size }) => {
     }
 
     return (
-        <Circle size={getSize().circle} up={up}>
+        <Circle className={!noPulse ? 'pulse' : ''} size={getSize().circle} up={up}>
             {
                 up
                     ? <Check size={getSize().icon} color={"#fff"} strokeWidth={'0.2rem'} />
