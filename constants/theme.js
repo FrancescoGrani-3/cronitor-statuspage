@@ -5,6 +5,7 @@ const theme = {
     background: "#f2f2f2",
     green: "#53b063",
     red: "#de3f2c",
+    gray: "#ccc",
   
     card: {
       header: "#fafafc",

@@ -27,7 +27,7 @@ export const Pings = styled.div`
 
 
 export const Ping = styled.span`
-    background-color: ${p => p.status === 'ok' ? p.theme.colors.green : p.theme.colors.red};
+    background-color: ${p => p.status ? p.status === 'ok' ? p.theme.colors.green : p.theme.colors.red : p.theme.colors.gray};
     display: inline-flex;
     height: 40px;
     border-radius: 25px;

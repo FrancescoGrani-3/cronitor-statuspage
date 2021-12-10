@@ -9,6 +9,8 @@ let liveStatsInterval = null;
 const Landing = (props) => {
   const [monitors, setMonitors] = useState(props.data.monitors)
 
+  console.log(monitors)
+
   useEffect(() => {
     liveStatsInterval = setInterval(() => {
       fetchMonitorsData()
@@ -64,9 +66,9 @@ const Landing = (props) => {
 export const getStaticProps = async () => {
   const results = await listMonitors()
 
-  const pings = await Promise.all(results.data.monitors.map(monitor => {
-    return listMonitorPings(monitor.key)
-  }))
+  // const pings = await Promise.all(results.data.monitors.map(monitor => {
+  //   return listMonitorPings(monitor.key)
+  // }))
 
   const activities = await Promise.all(results.data.monitors.map(monitor => {
     return listMonitorActivities(monitor.key)
@@ -74,11 +76,14 @@ export const getStaticProps = async () => {
 
 
   const monitors = results.data.monitors.map((monitor, index) => {
+    // const pingsData = pings[index].data[monitor.key]
+    const activitiesData = activities[index].data
+    console.log(activitiesData.length);
 
     return {
       ...monitor,
-      pings: pings[index].data[monitor.key],
-      activities: activities[index].data,
+      // pings: pingsData.concat([...new Array(60 - pingsData.length).fill({})]),
+      activities: activitiesData.concat([...new Array(50 - activitiesData.length).fill({})]),
     }
   })
 
