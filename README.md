@@ -1,8 +1,26 @@
-This project provides ability to create status pages for [Cronitor](https://Cronitor.io/) which is a monitoring system.
+<br />
+<div align="center">
+  <a href="">
+    <img src="public/logo.png" alt="Logo" height="80">
+  </a>
 
+  <h3 align="center">Cronitor StatusPage</h3>
 
-## Demo
-Checkout our live demo [here](https://cronitor-statuspage.vercel.app).
+  <p align="center">
+    Create beautiful status pages for your applications in minutes
+    <br />
+    <a href="https://cronitor.io/docs"><strong>Explore Cronitor docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://cronitor-statuspage.vercel.app">View Demo</a>
+    ·
+    <a href="https://cronitor.io">Visit Cronitor</a>
+  </p>
+</div>
+
+This project provides ability to create status pages for [Cronitor](https://Cronitor.io/) which is a simple monitoring system. Cronitor provides performance insights and uptime monitoring for cron jobs, websites, APIs and more.
+
+![Demo](public/demo.png)
 
 ## Getting Started
 
