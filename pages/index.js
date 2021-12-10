@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Container } from 'react-bootstrap'
 import axios from 'axios'
+import Head from 'next/head'
 
 import Services from '../components/services'
-import { listMonitorActivities, listMonitorPings, listMonitors } from '../api/monitors'
+import { listMonitorActivities, listMonitors } from '../api/monitors'
+import configs from '../configs'
 
 let liveStatsInterval = null;
 const Landing = (props) => {
@@ -54,19 +56,20 @@ const Landing = (props) => {
     });
   }
 
-  return (
+  return (<>
+    <Head>
+      <title>{configs.NAME} Status Page</title>
+      <meta name="description"></meta>
+      <link rel='icon' href='favicon.ico' type='image/x-icon' />
+    </Head>
     <Container>
       <Services monitors={monitors} />
     </Container >
-  )
+  </>)
 }
 
 export const getStaticProps = async () => {
   const results = await listMonitors()
-
-  // const pings = await Promise.all(results.data.monitors.map(monitor => {
-  //   return listMonitorPings(monitor.key)
-  // }))
 
   const activities = await Promise.all(results.data.monitors.map(monitor => {
     return listMonitorActivities(monitor.key)
@@ -74,12 +77,10 @@ export const getStaticProps = async () => {
 
 
   const monitors = results.data.monitors.map((monitor, index) => {
-    // const pingsData = pings[index].data[monitor.key]
     const activitiesData = activities[index].data
 
     return {
       ...monitor,
-      // pings: pingsData.concat([...new Array(60 - pingsData.length).fill({})]),
       activities: activitiesData.concat([...new Array(50 - activitiesData.length).fill({})]),
     }
   })

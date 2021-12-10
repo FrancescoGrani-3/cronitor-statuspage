@@ -17,8 +17,14 @@ const Services = ({ monitors }) => {
                 monitors.length > 0
                     ? <>
                         <StatusIndicator noPulse up={getMonitorsStatus()} />
-                        <Heading className='mt-4 mb-2'>All services are operational</Heading>
-                        <Text muted>As of {new Intl.DateTimeFormat('en-GB', { dateStyle: 'full', timeStyle: 'short' }).format(monitors[0].latest_event.stamp * 1000)}</Text>
+                        <Heading className='mt-4 mb-2'>
+                            {
+                                getMonitorsStatus() 
+                                    ? 'All services are operational'
+                                    : 'Some services might be down due to an incident'
+                            }
+                        </Heading>
+                        <Text muted>As of {new Intl.DateTimeFormat('en-US', { dateStyle: 'full', timeStyle: 'short' }).format(monitors[0].latest_event.stamp * 1000)}</Text>
                     </>
                     : <>
                         <StatusIndicator up={false} />
