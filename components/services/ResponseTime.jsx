@@ -39,7 +39,7 @@ const ResponseTime = ({ monitor }) => {
                         <stop offset="100%" stopColor={theme.colors.green} stopOpacity={0.0} />
                     </linearGradient>
                 </GradientDefs>
-                <HorizontalGridLines />
+                <HorizontalGridLines tickTotal={2} />
                 <AreaSeries
                     color={`url(#fade-gradient)`}
                     curve={'curveMonotoneX'}
@@ -60,7 +60,7 @@ const ResponseTime = ({ monitor }) => {
                     minute: '2-digit',
                     hour12: false
                 })} />
-                <YAxis tickTotal={3} />
+                <YAxis tickTotal={2} />
             </FlexibleWidthXYPlot>
         </Service>
     )
