@@ -16,8 +16,6 @@ import { useTheme } from 'styled-components';
 
 const ResponseTime = ({ monitor }) => {
     const theme = useTheme()
-    
-    // console.log(theme);
 
     const calculateResponseTime = () => {
         const length = Array.from(monitor.activities).filter(a => a.status).length;
@@ -47,7 +45,7 @@ const ResponseTime = ({ monitor }) => {
                     curve={'curveMonotoneX'}
                     style={{ strokeLinejoin: "round" }}
                     data={monitor.activities.map((activity, index) => ({
-                        x: index, y: activity.duration
+                        x: parseFloat(activity.stamp) * 1000, y: activity.duration * 1000
                     }))} />
                 <LineSeries
                     color={theme.colors.green}
@@ -55,10 +53,14 @@ const ResponseTime = ({ monitor }) => {
                     strokeWidth={2}
                     curve={'curveMonotoneX'}
                     data={monitor.activities.map((activity, index) => ({
-                        x: index, y: activity.duration
+                        x: parseFloat(activity.stamp) * 1000, y: activity.duration * 1000
                     }))} />
-                <XAxis />
-                <YAxis />
+                <XAxis tickTotal={5} tickFormat={v => new Date(v).toLocaleTimeString(navigator.language, {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                })} />
+                <YAxis tickTotal={3} />
             </FlexibleWidthXYPlot>
         </Service>
     )

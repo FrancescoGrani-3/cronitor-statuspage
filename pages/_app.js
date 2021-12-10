@@ -10,7 +10,7 @@ import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
   // const theme = useContext(ThemeContext);
-  const [themeMode, setThemeMode] = useState('dark')
+  const [themeMode, setThemeMode] = useState('light')
 
   return (<ThemeContext.Provider value={{
       mode: themeMode,

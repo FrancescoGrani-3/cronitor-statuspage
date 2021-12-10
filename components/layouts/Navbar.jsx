@@ -20,10 +20,6 @@ const CustomNavbar = (props) => {
         else return 'Light'
     }
 
-    useEffect(() => {
-        console.log(theme.mode);
-    }, [theme.mode])
-
     return (
         <Wrapper>
             <Navbar>
