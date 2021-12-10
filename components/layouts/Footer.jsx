@@ -1,15 +1,9 @@
 import { Container } from 'react-bootstrap'
-import styled from 'styled-components'
 
+import { Wrapper, StyledPowered } from './index.styled'
 import Heading from '../typography/Heading'
 import Text from '../typography/Text'
 
-const Wrapper = styled.div`
-`
-
-const StyledPowered = styled.div`
-    display: flex;
-`
 
 const Footer = props => {
 

@@ -1,12 +1,6 @@
-import { Container } from 'react-bootstrap';
-import styled from 'styled-components';
-
+import { Wrapper } from './index.styled'
 import Navbar from './Navbar'
 import Footer from './Footer'
-
-const Wrapper = styled.div`
-
-`
 
 const Layouts = (props) => {
     return (<Wrapper>

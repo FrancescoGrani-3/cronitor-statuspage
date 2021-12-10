@@ -1,27 +1,31 @@
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container, } from "react-bootstrap"
-import styled from 'styled-components'
+import configs from "../../configs"
 
+import { Wrapper, VerticalSeparator } from './index.styled'
 import Heading from "../typography/Heading"
 import Text from "../typography/Text"
 
-const Wrapper = styled.div`
-    padding: 2rem 0;
-`
 
 const CustomNavbar = (props) => {
     return (
         <Wrapper>
             <Navbar>
                 <Container>
-                    <Nav>
-                    <Heading variant={6}>
-                        Pabla
-                    </Heading>
-                    <Text muted className='mx-2'>Status</Text>
+                    <Nav className="d-flex align-items-center">
+                        <a href={configs.WEBSITE_URL}>
+                            <Heading variant={6}>
+                                {configs.NAME}
+                            </Heading>
+                        </a>
+                        <VerticalSeparator className="mx-2"/>
+                        <Text muted className=''>Status</Text>
                     </Nav>
-                    <Nav className="ml-auto">
-                        <Nav.Link href="#home">Support</Nav.Link>
-                    </Nav>
+                    {configs.CTA_URL && <Nav className="ml-auto">
+                        <Nav.Link target="_blank" href={configs.CTA_URL}>{configs.CTA_TITLE || 'Support'}</Nav.Link>
+                    </Nav>}
+                    {/* <Nav className="ml-auto">
+                        <Nav.Link>Support</Nav.Link>
+                    </Nav> */}
                 </Container>
             </Navbar>
         </Wrapper>

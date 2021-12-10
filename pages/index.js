@@ -9,8 +9,6 @@ let liveStatsInterval = null;
 const Landing = (props) => {
   const [monitors, setMonitors] = useState(props.data.monitors)
 
-  console.log(monitors)
-
   useEffect(() => {
     liveStatsInterval = setInterval(() => {
       fetchMonitorsData()
@@ -78,7 +76,6 @@ export const getStaticProps = async () => {
   const monitors = results.data.monitors.map((monitor, index) => {
     // const pingsData = pings[index].data[monitor.key]
     const activitiesData = activities[index].data
-    console.log(activitiesData.length);
 
     return {
       ...monitor,
