@@ -15,7 +15,7 @@ import { useTheme } from 'styled-components';
 
 
 const ResponseTime = ({ monitor }) => {
-    // const theme = useTheme()
+    const theme = useTheme()
     
     // console.log(theme);
 
@@ -32,7 +32,7 @@ const ResponseTime = ({ monitor }) => {
         <Service>
             <Heading variant={6} className='pb-1'>Response time</Heading>
             <Text muted className='pb-2'>{calculateResponseTime().toFixed(0)}ms</Text>
-            {/* <FlexibleWidthXYPlot
+            <FlexibleWidthXYPlot
                 height={100}>
 
                 <GradientDefs>
@@ -59,7 +59,7 @@ const ResponseTime = ({ monitor }) => {
                     }))} />
                 <XAxis />
                 <YAxis />
-            </FlexibleWidthXYPlot> */}
+            </FlexibleWidthXYPlot>
         </Service>
     )
 }
