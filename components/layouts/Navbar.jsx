@@ -1,12 +1,29 @@
-import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container, } from "react-bootstrap"
+import { useEffect, useContext } from "react"
+import { Navbar, Nav, Container, } from "react-bootstrap"
 import configs from "../../configs"
 
 import { Wrapper, VerticalSeparator } from './index.styled'
 import Heading from "../typography/Heading"
 import Text from "../typography/Text"
+import { ThemeContext } from "../../constants/theme"
 
 
 const CustomNavbar = (props) => {
+    const theme = useContext(ThemeContext)
+    
+    const handleChangeTheme = () => {
+        theme.toggleMode()
+    }
+
+    const getThemeChangerLabel = () => {
+        if (theme.mode === 'light') return 'Dark'
+        else return 'Light'
+    }
+
+    useEffect(() => {
+        console.log(theme.mode);
+    }, [theme.mode])
+
     return (
         <Wrapper>
             <Navbar>
@@ -20,12 +37,14 @@ const CustomNavbar = (props) => {
                         <VerticalSeparator className="mx-2"/>
                         <Text muted className=''>Status</Text>
                     </Nav>
-                    {configs.CTA_URL && <Nav className="ml-auto">
-                        <Nav.Link target="_blank" href={configs.CTA_URL}>{configs.CTA_TITLE || 'Support'}</Nav.Link>
-                    </Nav>}
-                    {/* <Nav className="ml-auto">
-                        <Nav.Link>Support</Nav.Link>
-                    </Nav> */}
+                    <Nav className="ml-auto">
+                        <Nav.Link>
+                            <Text onClick={handleChangeTheme}>{getThemeChangerLabel()}</Text>
+                        </Nav.Link>
+                        {configs.CTA_URL && <Nav.Link target="_blank" href={configs.CTA_URL}>
+                            <Text className=''>{configs.CTA_TITLE || 'Support'}</Text>
+                        </Nav.Link>}
+                    </Nav>
                 </Container>
             </Navbar>
         </Wrapper>

@@ -1,23 +1,49 @@
-import styled, { createGlobalStyle } from 'styled-components'
+import React from 'react'
+import { createGlobalStyle } from 'styled-components'
 
-const theme = {
-  colors: {
-    background: "#f2f2f2",
-    green: "#59bb65",
-    red: "#e64a33",
-    gray: "#ccc",
-  
-    card: {
-      header: "#fafafc",
-      body: "#ffffff",
-    }
-  },
+const light = {
+  background: "#f2f2f2",
+  green: "#59bb65",
+  red: "#e64a33",
+  gray: "#ccc",
+  text: "#222",
+  heading: "#222",
+  muted: "#6c757d",
+
+
+  card: {
+    header: "#ffffff",
+    body: "#ffffff",
+    border: "#eee"
+  }
+}
+
+const dark = {
+  background: "#222",
+  green: "#59bb65",
+  red: "#e64a33",
+  gray: "#ccc",
+  text: "#fff",
+  heading: "#fff",
+  muted: "#999",
+
+  card: {
+    header: "#333",
+    body: "#333",
+    border: "#444"
+  }
+}
+
+const theme = (mode) => ({
+  colors: mode === 'dark' ? dark : light,
   sizes: {
     card: {
       radius: 20,
     }
   }
-};
+})
+
+export const ThemeContext = React.createContext({});
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -33,10 +59,18 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
+  * {
+    transition: 0.3s all;
+  }
+
   body {
-    background-color: ${theme.colors.background};
+    background-color: ${p => p.theme.colors.background};
     padding-bottom: 100px;
   }
+
+  .text-muted {
+    color: ${p => p.theme.colors.muted} !important;
+  } 
 `
 
 

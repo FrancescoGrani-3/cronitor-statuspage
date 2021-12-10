@@ -9,8 +9,7 @@ const pulse = keyframes`
 `
 
 export const Service = styled.div`
-    background-color: ${p => p.theme.colors.card.body};
-    ${p => !p.noBorder && `border-bottom: 1px solid #e9e9e9;`}
+    border-bottom: 1px solid ${p => p.theme.colors.card.border};
     padding: 1.5rem 2rem;
 
     &:last-child {
@@ -94,15 +93,15 @@ export const StyledCard = styled(Card)`
   border-radius: ${p => p.theme.sizes.card.radius}px;
   border: none;
   box-shadow: 2px 2px 5px #2222;
+  background-color: ${p => p.theme.colors.card.body};
 
   .card-header {
     border-radius: ${p => p.theme.sizes.card.radius}px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     padding: 1.5rem 2rem;
-    border-bottom: 1px solid #e9e9e9;
+    border-bottom: 1px solid ${p => p.theme.colors.card.border};
     display: flex;
-    background: transparent;
   }
 
   .card-footer {

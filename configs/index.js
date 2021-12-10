@@ -9,6 +9,4 @@ const configs = {
     CTA_URL: process.env.NEXT_PUBLIC_CTA_URL,
 }
 
-console.log(configs, process.env);
-
 export default configs

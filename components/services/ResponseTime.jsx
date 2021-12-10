@@ -11,10 +11,14 @@ import {
 import { Service, } from './index.styled'
 import Text from '../typography/Text';
 import Heading from '../typography/Heading';
-import theme from '../../constants/theme';
+import { useTheme } from 'styled-components';
 
 
 const ResponseTime = ({ monitor }) => {
+    // const theme = useTheme()
+    
+    // console.log(theme);
+
     const calculateResponseTime = () => {
         const length = Array.from(monitor.activities).filter(a => a.status).length;
         return Array.from(monitor.activities)
@@ -24,17 +28,16 @@ const ResponseTime = ({ monitor }) => {
             }, 0) * 1000
     }
 
-
     return (
         <Service>
             <Heading variant={6} className='pb-1'>Response time</Heading>
             <Text muted className='pb-2'>{calculateResponseTime().toFixed(0)}ms</Text>
-            <FlexibleWidthXYPlot
+            {/* <FlexibleWidthXYPlot
                 height={100}>
 
                 <GradientDefs>
                     <linearGradient id='fade-gradient' x1="0" x2="0" y1="0" y2="1">
-                        <stop offset="0%" stopColor={theme.colors.green} stopOpacity={0.4} />
+                        <stop offset="0%" stopColor={theme.colors.green} stopOpacity={0.8} />
                         <stop offset="100%" stopColor={theme.colors.green} stopOpacity={0.0} />
                     </linearGradient>
                 </GradientDefs>
@@ -56,7 +59,7 @@ const ResponseTime = ({ monitor }) => {
                     }))} />
                 <XAxis />
                 <YAxis />
-            </FlexibleWidthXYPlot>
+            </FlexibleWidthXYPlot> */}
         </Service>
     )
 }
