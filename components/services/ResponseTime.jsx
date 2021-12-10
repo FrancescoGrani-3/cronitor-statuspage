@@ -12,6 +12,7 @@ import { Service, } from './index.styled'
 import Text from '../typography/Text';
 import Heading from '../typography/Heading';
 import { useTheme } from 'styled-components';
+import { IS_SERVER } from '../../constants';
 
 
 const ResponseTime = ({ monitor }) => {
@@ -55,7 +56,7 @@ const ResponseTime = ({ monitor }) => {
                     data={monitor.activities.map((activity, index) => ({
                         x: parseFloat(activity.stamp) * 1000, y: activity.duration * 1000
                     }))} />
-                <XAxis tickTotal={5} tickFormat={v => new Date(v).toLocaleTimeString(navigator.language, {
+                <XAxis tickTotal={5} tickFormat={v => new Date(v).toLocaleTimeString('en', {
                     hour: '2-digit',
                     minute: '2-digit',
                     hour12: false
