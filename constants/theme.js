@@ -3,8 +3,8 @@ import styled, { createGlobalStyle } from 'styled-components'
 const theme = {
   colors: {
     background: "#f2f2f2",
-    green: "#53b063",
-    red: "#de3f2c",
+    green: "#59bb65",
+    red: "#e64a33",
     gray: "#ccc",
   
     card: {
