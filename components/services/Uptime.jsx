@@ -5,7 +5,7 @@ import StatusIndicator from '../services/StatusIndicator';
 
 const Uptime = ({ monitor }) => {
     const calculateUptime = () => {
-        const length = monitor.activities.length;
+        const length = Array.from(monitor.activities).filter(a => a.status).length;
         return Array.from(monitor.activities)
             .filter(a => a.status)
             .reduce((acc, curr) => {

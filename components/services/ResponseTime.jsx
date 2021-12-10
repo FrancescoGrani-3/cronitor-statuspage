@@ -16,7 +16,7 @@ import theme from '../../constants/theme';
 
 const ResponseTime = ({ monitor }) => {
     const calculateResponseTime = () => {
-        const length = monitor.activities.length;
+        const length = Array.from(monitor.activities).filter(a => a.status).length;
         return Array.from(monitor.activities)
             .filter(a => a.status)
             .reduce((acc, curr) => {
