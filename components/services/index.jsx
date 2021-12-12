@@ -7,7 +7,7 @@ import Service from './Service';
 const Services = ({ monitors }) => {
     const getMonitorsStatus = () => {
         return monitors.reduce((acc, curr) => {
-            return (curr.latest_event.event === 'req-ok') && acc
+            return (curr.latest_event?.event === 'req-ok') && acc
         }, true)
     }
 

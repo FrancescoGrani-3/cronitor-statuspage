@@ -19,8 +19,8 @@ const ResponseTime = ({ monitor }) => {
     const theme = useTheme()
 
     const calculateResponseTime = () => {
-        const length = Array.from(monitor.activities).filter(a => a.status).length;
-        return Array.from(monitor.activities)
+        const length = Array.from(monitor.pings).filter(a => a.status).length;
+        return Array.from(monitor.pings)
             .filter(a => a.status)
             .reduce((acc, curr) => {
                 return acc + (curr.duration / length);
@@ -45,7 +45,7 @@ const ResponseTime = ({ monitor }) => {
                     color={`url(#fade-gradient)`}
                     curve={'curveMonotoneX'}
                     style={{ strokeLinejoin: "round" }}
-                    data={monitor.activities.map((activity, index) => ({
+                    data={monitor.pings.map((activity, index) => ({
                         x: parseFloat(activity.stamp) * 1000, y: activity.duration * 1000
                     }))} />
                 <LineSeries
@@ -53,7 +53,7 @@ const ResponseTime = ({ monitor }) => {
                     style={{ strokeLinejoin: "round", background: 'transparent' }}
                     strokeWidth={2}
                     curve={'curveMonotoneX'}
-                    data={monitor.activities.map((activity, index) => ({
+                    data={monitor.pings.map((activity, index) => ({
                         x: parseFloat(activity.stamp) * 1000, y: activity.duration * 1000
                     }))} />
                 <XAxis tickTotal={5} tickFormat={v => new Date(v).toLocaleTimeString('en', {

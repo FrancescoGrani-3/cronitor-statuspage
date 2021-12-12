@@ -5,8 +5,8 @@ import StatusIndicator from '../services/StatusIndicator';
 
 const Uptime = ({ monitor }) => {
     const calculateUptime = () => {
-        const length = Array.from(monitor.activities).filter(a => a.status).length;
-        return Array.from(monitor.activities)
+        const length = Array.from(monitor.pings).filter(a => a.status).length;
+        return Array.from(monitor.pings)
             .filter(a => a.status)
             .reduce((acc, curr) => {
                 return curr.status === 'ok' ? acc + (1 / length) : acc
@@ -20,7 +20,7 @@ const Uptime = ({ monitor }) => {
             </Heading>
             <Text muted className='pb-2'>{calculateUptime().toFixed(3)}% uptime</Text>
             <Pings>
-                {monitor.activities.map((activity, index) => (
+                {monitor.pings.map((activity, index) => (
                     <Ping key={index} status={activity.status} />
                 ))}
             </Pings>

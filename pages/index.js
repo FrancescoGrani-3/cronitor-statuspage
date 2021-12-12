@@ -4,7 +4,7 @@ import axios from 'axios'
 import Head from 'next/head'
 
 import Services from '../components/services'
-import { listMonitorActivities, listMonitors } from '../api/monitors'
+import { listMonitorPings, listMonitors } from '../api/monitors'
 import configs from '../configs'
 
 let liveStatsInterval = null;
@@ -14,7 +14,7 @@ const Landing = (props) => {
   useEffect(() => {
     liveStatsInterval = setInterval(() => {
       fetchMonitorsData()
-      fetchMonitorsActivitiesDate()
+      fetchMonitorsPingsData()
     }, 60000)
 
     return () => {
@@ -37,16 +37,18 @@ const Landing = (props) => {
     })
   }
 
-  const fetchMonitorsActivitiesDate = () => {
+  const fetchMonitorsPingsData = () => {
     monitors.forEach(monitor => {
 
-      axios.get(`api/monitors/${monitor.key}/activities`).then(res => {
+      axios.get(`api/monitors/${monitor.key}/pings`).then(res => {
         if (res.status !== 200) return
         setMonitors(monitors => monitors.map(m => {
+
           if (m.key === monitor.key) {
+            const data = res.data[monitor.key]
             m = {
               ...m,
-              activities: res.data
+              pings: data.concat([...new Array(50 - data.length).fill({})])
             }
           }
 
@@ -71,17 +73,16 @@ const Landing = (props) => {
 export const getStaticProps = async () => {
   const results = await listMonitors()
 
-  const activities = await Promise.all(results.data.monitors.map(monitor => {
-    return listMonitorActivities(monitor.key)
+  const pings = await Promise.all(results.data.monitors.map(monitor => {
+    return listMonitorPings(monitor.key)
   }))
 
-
   const monitors = results.data.monitors.map((monitor, index) => {
-    const activitiesData = activities[index].data
+    const pingsData = pings[index].data[monitor.key]
 
     return {
       ...monitor,
-      activities: activitiesData.concat([...new Array(50 - activitiesData.length).fill({})]),
+      pings: pingsData.concat([...new Array(50 - pingsData.length).fill({})]),
     }
   })
 

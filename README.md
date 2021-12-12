@@ -43,6 +43,27 @@ nano .env
 
 That's it, your status page is ready!
 
+## Deployment
+To deploy the project to a production environment:
+
+```bash
+yarn
+yarn build
+yarn start
+```
+
+## Development
+First install dependencies and then run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+
 ## Deploy on Vercel
 
 The easiest way to deploy your status page is to use the [Vercel Platform](https://vercel.com/new).

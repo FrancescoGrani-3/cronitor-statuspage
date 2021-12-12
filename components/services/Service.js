@@ -14,7 +14,7 @@ const Service = ({ monitor }) => {
             <StatusIndicator size='1x' up={monitor.latest_event.event === 'req-ok'} />
             <Heading variant={5} className='mx-2'>{monitor.name}</Heading>
           </Card.Header>
-          {monitor.activities && <StyledCardBody>
+          {monitor.pings && <StyledCardBody>
             <Uptime monitor={monitor} />
             <ResponseTime monitor={monitor} />
           </StyledCardBody>}
