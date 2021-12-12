@@ -4,7 +4,7 @@ import axios from 'axios'
 import Head from 'next/head'
 
 import Services from '../components/services'
-import { listMonitorPings, listMonitors } from '../api/monitors'
+import { listMonitorPings, listMonitors } from '../apis/monitors'
 import configs from '../configs'
 
 let liveStatsInterval = null;

@@ -40,7 +40,39 @@ const ResponseTime = ({ monitor }) => {
                         <stop offset="100%" stopColor={theme.colors.green} stopOpacity={0.0} />
                     </linearGradient>
                 </GradientDefs>
-                <HorizontalGridLines tickTotal={2} />
+                <HorizontalGridLines tickTotal={2}
+                    style={{
+                        stroke: theme.colors.lightGray,
+                    }} />
+                <XAxis tickTotal={5} tickFormat={v => new Date(v).toLocaleTimeString('en', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                })}
+                    style={{
+                        line: {
+                            stroke: theme.colors.lightGray,
+                        }
+                    }}
+                />
+                <YAxis tickTotal={2}
+                    // tickSize={10}
+                    // tickSizeOuter={0}
+                    // tickSizeInner={10}
+                    style={{
+                        line: {
+                            // stroke: theme.colors.green,
+                            strokeWidth: 0
+                        },
+                        ticks: {
+                            // stroke: theme.colors.green,
+                            // strokeWidth: 5
+                        },
+                        text: {
+                            // fill: theme.colors.green,
+                            // fontSize: '0.8rem'
+                        }
+                    }} />
                 <AreaSeries
                     color={`url(#fade-gradient)`}
                     curve={'curveMonotoneX'}
@@ -56,12 +88,6 @@ const ResponseTime = ({ monitor }) => {
                     data={monitor.pings.map((activity, index) => ({
                         x: parseFloat(activity.stamp) * 1000, y: activity.duration * 1000
                     }))} />
-                <XAxis tickTotal={5} tickFormat={v => new Date(v).toLocaleTimeString('en', {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    hour12: false
-                })} />
-                <YAxis tickTotal={2} />
             </FlexibleWidthXYPlot>
         </Service>
     )

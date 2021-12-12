@@ -1,4 +1,4 @@
-import { listMonitorPings } from '../../../../api/monitors'
+import { listMonitorPings } from '../../../../apis/monitors'
 
 export default async function handler(req, res) {
   const { key } = req.query

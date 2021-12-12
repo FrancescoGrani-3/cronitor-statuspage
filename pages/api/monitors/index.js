@@ -1,4 +1,4 @@
-import { listMonitors } from '../../../api/monitors'
+import { listMonitors } from '../../../apis/monitors'
 
 export default async function handler(req, res) {
   try {
