@@ -17,3 +17,7 @@ fetchAPI.defaults.headers = {
 fetchAPI.defaults.headers['Authorization'] = 'Basic ' + new Buffer.from(configs.CRONITOR_API_KEY + ':').toString('base64')
 
 export default fetchAPI;
+
+export const fetchInternalAPI = axios.create({
+  baseURL: 'api'
+});

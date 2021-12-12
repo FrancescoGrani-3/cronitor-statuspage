@@ -4,7 +4,7 @@ import axios from 'axios'
 import Head from 'next/head'
 
 import Services from '../components/services'
-import { listMonitorPings, listMonitors } from '../apis/monitors'
+import { listMonitorPingsInternal, listMonitorsInternal } from '../apis/monitors'
 import configs from '../configs'
 
 let liveStatsInterval = null;
@@ -71,10 +71,10 @@ const Landing = (props) => {
 }
 
 export const getStaticProps = async () => {
-  const results = await listMonitors()
+  const results = await listMonitorsInternal()
 
   const pings = await Promise.all(results.data.monitors.map(monitor => {
-    return listMonitorPings(monitor.key)
+    return listMonitorPingsInternal(monitor.key)
   }))
 
   const monitors = results.data.monitors.map((monitor, index) => {
