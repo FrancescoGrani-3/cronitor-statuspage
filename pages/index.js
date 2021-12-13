@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Container } from 'react-bootstrap'
-import axios from 'axios'
 import Head from 'next/head'
 
 import Services from '../components/services'
-import { listMonitorPingsInternal, listMonitorsInternal } from '../apis/monitors'
+import {
+  listMonitors, listMonitorPings,
+  listMonitorPingsInternal, listMonitorsInternal
+} from '../apis/monitors'
 import configs from '../configs'
 
 let liveStatsInterval = null;
@@ -23,7 +25,7 @@ const Landing = (props) => {
   }, [])
 
   const fetchMonitorsData = () => {
-    axios.get(`api/monitors`).then(res => {
+    listMonitorsInternal().then(res => {
       if (res.status !== 200) return
       setMonitors(monitors => monitors.map(m => {
         const data = res.data.monitors.find(d => d.key === m.key)
@@ -40,7 +42,7 @@ const Landing = (props) => {
   const fetchMonitorsPingsData = () => {
     monitors.forEach(monitor => {
 
-      axios.get(`api/monitors/${monitor.key}/pings`).then(res => {
+      listMonitorPingsInternal(monitor.key).then(res => {
         if (res.status !== 200) return
         setMonitors(monitors => monitors.map(m => {
 
@@ -71,24 +73,36 @@ const Landing = (props) => {
 }
 
 export const getStaticProps = async () => {
-  const results = await listMonitorsInternal()
+  try {
+    const results = await listMonitors()
 
-  const pings = await Promise.all(results.data.monitors.map(monitor => {
-    return listMonitorPingsInternal(monitor.key)
-  }))
+    const pings = await Promise.all(results.data.monitors.map(monitor => {
+      return listMonitorPings(monitor.key)
+    }))
 
-  const monitors = results.data.monitors.map((monitor, index) => {
-    const pingsData = pings[index].data[monitor.key]
+    const monitors = results.data.monitors.map((monitor, index) => {
+      const pingsData = pings[index].data[monitor.key]
+
+      return {
+        ...monitor,
+        pings: pingsData.concat([...new Array(50 - pingsData.length).fill({})]),
+      }
+    })
 
     return {
-      ...monitor,
-      pings: pingsData.concat([...new Array(50 - pingsData.length).fill({})]),
+      props: {
+        data: { ...results.data, monitors },
+      },
+      revalidate: 1,
     }
-  })
+  } catch (e) {
 
-  return {
-    props: {
-      data: { ...results.data, monitors },
+    return {
+      props: {
+        data: {
+          monitors: [],
+        }
+      },
     }
   }
 }
