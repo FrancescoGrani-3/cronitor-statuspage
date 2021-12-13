@@ -27,6 +27,11 @@ const ResponseTime = ({ monitor }) => {
             }, 0) * 1000
     }
 
+    const calculateX = (stamp, index) => {
+        if (stamp) return stamp
+        return parseFloat(monitor.pings[0].stamp) - (index * 60)
+    }
+
     return (
         <Service>
             <Heading variant={6} className='pb-1'>Response time</Heading>
@@ -74,19 +79,21 @@ const ResponseTime = ({ monitor }) => {
                         }
                     }} />
                 <AreaSeries
+                    getNull={d => d.y}
                     color={`url(#fade-gradient)`}
                     curve={'curveMonotoneX'}
                     style={{ strokeLinejoin: "round" }}
                     data={monitor.pings.map((activity, index) => ({
-                        x: parseFloat(activity.stamp) * 1000, y: activity.duration * 1000
+                        x: parseFloat(activity.stamp) * 1000, y: (activity.duration || 0) * 1000
                     }))} />
                 <LineSeries
+                    getNull={d => d.y}
                     color={theme.colors.green}
                     style={{ strokeLinejoin: "round", background: 'transparent' }}
                     strokeWidth={2}
                     curve={'curveMonotoneX'}
                     data={monitor.pings.map((activity, index) => ({
-                        x: parseFloat(activity.stamp) * 1000, y: activity.duration * 1000
+                        x: calculateX(parseFloat(activity.stamp), index) * 1000, y: (activity.duration || 0) * 1000
                     }))} />
             </FlexibleWidthXYPlot>
         </Service>

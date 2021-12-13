@@ -20,7 +20,7 @@ const Uptime = ({ monitor }) => {
             </Heading>
             <Text muted className='pb-2'>{calculateUptime().toFixed(3)}% uptime</Text>
             <Pings>
-                {monitor.pings.map((activity, index) => (
+                {[...monitor.pings].reverse().map((activity, index) => (
                     <Ping key={index} status={activity.status} />
                 ))}
             </Pings>
