@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Container } from 'react-bootstrap'
 import Head from 'next/head'
+import useSetState from 'react-use-setstate'
 
 import Services from '../components/services'
 import {
@@ -11,12 +12,15 @@ import configs from '../configs'
 
 let liveStatsInterval = null;
 const Landing = (props) => {
-  const [monitors, setMonitors] = useState(props.data.monitors)
+  const [state, setState] = useSetState({
+    monitors: props.data.monitors,
+    loading: false,
+  })
 
   useEffect(() => {
+    setState({ loading: 0 })
     liveStatsInterval = setInterval(() => {
-      fetchMonitorsData()
-      fetchMonitorsPingsData()
+      fetchData()
     }, 60000)
 
     return () => {
@@ -24,10 +28,26 @@ const Landing = (props) => {
     }
   }, [])
 
-  const fetchMonitorsData = () => {
-    listMonitorsInternal().then(res => {
-      if (res.status !== 200) return
-      setMonitors(monitors => monitors.map(m => {
+  const fetchData = () => {
+    setState({ loading: true })
+    Promise.allSettled([
+      listMonitorsInternal(),
+      ...state.monitors.map(monitor => {
+        return listMonitorPingsInternal(monitor.key)
+      })
+    ]).then(results => {
+      handleFetchedMonitors(results[0])
+      results.slice(1).forEach(res => {
+        handleFetchedMonitorsPings(res)
+      })
+      setState({ loading: false })
+    })
+  }
+
+  const handleFetchedMonitors = (res) => {
+    if (res.status !== 200) return
+    setState(prevState => ({
+      monitors: prevState.monitors.map(m => {
         const data = res.data.monitors.find(d => d.key === m.key)
         m = {
           ...m,
@@ -35,29 +55,28 @@ const Landing = (props) => {
         }
 
         return m
-      }))
-    })
+      }),
+      loading: prevState.loading - 1
+    }))
   }
 
-  const fetchMonitorsPingsData = () => {
-    monitors.forEach(monitor => {
+  const handleFetchedMonitorsPings = (res) => {
+    if (res.status !== 200) return
+    setState(prevState => ({
+      monitors: prevState.monitors.map(m => {
 
-      listMonitorPingsInternal(monitor.key).then(res => {
-        if (res.status !== 200) return
-        setMonitors(monitors => monitors.map(m => {
-
-          if (m.key === monitor.key) {
-            const data = res.data[monitor.key]
-            m = {
-              ...m,
-              pings: data.concat([...new Array(50 - data.length).fill({})])
-            }
+        if (m.key === monitor.key) {
+          const data = res.data[monitor.key]
+          m = {
+            ...m,
+            pings: data.concat([...new Array(50 - data.length).fill({})])
           }
+        }
 
-          return m
-        }))
-      })
-    });
+        return m
+      }),
+      loading: prevState.loading - 1
+    }))
   }
 
   return (<>
@@ -67,8 +86,12 @@ const Landing = (props) => {
       <link rel='icon' href='favicon.ico' type='image/x-icon' />
     </Head>
     <Container>
-      <Services monitors={monitors} />
-    </Container >
+      <Services
+        monitors={state.monitors}
+        refresh={fetchData}
+        refreshLoading={state.loading}
+      />
+    </Container>
   </>)
 }
 

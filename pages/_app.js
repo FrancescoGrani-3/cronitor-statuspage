@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import useSetState from 'react-use-setstate';
 import { ThemeProvider } from 'styled-components'
 import Cookies from 'js-cookie'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -10,17 +10,19 @@ import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
   // const theme = useContext(ThemeContext);
-  const [themeMode, setThemeMode] = useState('light')
+  const [state, setState] = useSetState({
+    themeMode: 'light'
+  })
 
   return (<ThemeContext.Provider value={{
-      mode: themeMode,
+      mode: state.themeMode,
       toggleMode: () => {
-        const newTheme = themeMode === 'dark' ? 'light' : 'dark'
-        setThemeMode(newTheme)
+        const newTheme = state.themeMode === 'dark' ? 'light' : 'dark'
+        setState({themeMode: newTheme})
         Cookies.set('THEME', newTheme)
       }
     }}>
-      <ThemeProvider theme={theme(themeMode)}>
+      <ThemeProvider theme={theme(state.themeMode)}>
         <GlobalStyle />
         <Layouts>
           <Component {...pageProps} />
