@@ -2912,6 +2912,11 @@ react-transition-group@^4.4.1:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
+react-use-setstate@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-use-setstate/-/react-use-setstate-1.0.2.tgz#28068a9cbbf580f395f8912c3a8094665eaaff2d"
+  integrity sha512-YVxtEiNvt+imv4uWb0lCOO3P2HZAiYmf8k4xZ9tRJ20YnFEs01l9pFXUevdPMZYmnUMwRoWINfPlLSG0hl5PvA==
+
 react-vis@^1.11.7:
   version "1.11.7"
   resolved "https://registry.yarnpkg.com/react-vis/-/react-vis-1.11.7.tgz#909902af00158895d14da1adfe1d0dc0045228ff"

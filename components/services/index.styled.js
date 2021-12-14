@@ -24,6 +24,11 @@ export const Pings = styled.div`
     font-size: 0;
 `
 
+export const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+`
 
 export const Ping = styled.span`
     background-color: ${p => p.status ? p.status === 'ok' ? p.theme.colors.green : p.theme.colors.red : p.theme.colors.gray};
@@ -79,6 +84,10 @@ export const Circle = styled.div`
   }
 `
 
+export const Date = styled.div`
+    display: flex;
+    align-items: center;
+`
 
 export const StyledCardBody = styled(Card.Body)`
   padding: 0;
@@ -102,6 +111,12 @@ export const StyledCard = styled(Card)`
     padding: 1.5rem 2rem;
     border-bottom: 1px solid ${p => p.theme.colors.card.border};
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .status {
+        display: flex;
+    }
   }
 
   .card-footer {
