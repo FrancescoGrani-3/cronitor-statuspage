@@ -57,25 +57,20 @@ const ResponseTime = ({ monitor }) => {
                     style={{
                         line: {
                             stroke: theme.colors.lightGray,
+                        },
+                        text: {
+                            fill: theme.colors.muted,
                         }
                     }}
                 />
                 <YAxis tickTotal={2}
-                    // tickSize={10}
-                    // tickSizeOuter={0}
-                    // tickSizeInner={10}
+                    tickSize={0}
                     style={{
                         line: {
-                            // stroke: theme.colors.green,
                             strokeWidth: 0
                         },
-                        ticks: {
-                            // stroke: theme.colors.green,
-                            // strokeWidth: 5
-                        },
                         text: {
-                            // fill: theme.colors.green,
-                            // fontSize: '0.8rem'
+                            fill: theme.colors.muted,
                         }
                     }} />
                 <AreaSeries
