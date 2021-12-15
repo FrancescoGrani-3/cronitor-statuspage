@@ -7,7 +7,11 @@ export default async function handler(req, res) {
     // res.setHeader('Cache-Control', 's-maxage=0, stale-while-revalidate=0')
     res.status(status).json(data)
   } catch (error) {
-    const { data, status } = error.response
-    res.status(status).json(data)
+    if (error.response) {
+      const { data, status } = error.response
+      res.status(status).json(data)
+    } else {
+      res.status(500).json({ error: error.message })
+    }
   }
 }
