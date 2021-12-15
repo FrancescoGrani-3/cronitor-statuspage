@@ -11,7 +11,7 @@ const Button = ({ iconRotating, loading, loadingText, icon, ...props }) => {
             {...props} 
             $hasChildren={props.children}
             $iconRotating={iconRotating}
-            disabled={props.disabled || props.loading}
+            disabled={props.disabled || loading}
         >
             {icon && <span className='icon'>
                 {

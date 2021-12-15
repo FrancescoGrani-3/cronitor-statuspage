@@ -44,7 +44,7 @@ const Landing = (props) => {
   }
 
   const handleFetchedMonitors = (res) => {
-    if (res.status !== 200) return
+    if (res?.status !== 200) return
     setState(prevState => ({
       monitors: prevState.monitors.map(m => {
         const data = res.data.monitors.find(d => d.key === m.key)
@@ -59,7 +59,7 @@ const Landing = (props) => {
   }
 
   const handleFetchedMonitorsPings = (res) => {
-    if (res.status !== 200) return
+    if (res?.status !== 200) return
     setState(prevState => ({
       monitors: prevState.monitors.map(m => {
         const monitorKey = Object.keys(res.data)[0]
