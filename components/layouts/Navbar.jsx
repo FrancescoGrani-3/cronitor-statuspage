@@ -31,7 +31,7 @@ const CustomNavbar = (props) => {
                             </Heading>
                         </a>
                         <VerticalSeparator className="mx-2"/>
-                        <Text muted className=''>Status</Text>
+                        <Text muted={true} className=''>Status</Text>
                     </Nav>
                     <Nav className="ml-auto">
                         <Nav.Link>

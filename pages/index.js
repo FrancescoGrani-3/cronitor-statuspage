@@ -18,7 +18,6 @@ const Landing = (props) => {
   })
 
   useEffect(() => {
-    setState({ loading: 0 })
     liveStatsInterval = setInterval(() => {
       fetchData()
     }, 60000)
@@ -36,16 +35,16 @@ const Landing = (props) => {
         return listMonitorPingsInternal(monitor.key)
       })
     ]).then(results => {
-      handleFetchedMonitors(results[0])
+      handleFetchedMonitors(results[0].value)
       results.slice(1).forEach(res => {
-        handleFetchedMonitorsPings(res)
+        handleFetchedMonitorsPings(res.value)
       })
       setState({ loading: false })
     })
   }
 
   const handleFetchedMonitors = (res) => {
-    if (res.status !== 200) return
+    if (res?.status !== 200) return
     setState(prevState => ({
       monitors: prevState.monitors.map(m => {
         const data = res.data.monitors.find(d => d.key === m.key)
@@ -56,17 +55,16 @@ const Landing = (props) => {
 
         return m
       }),
-      loading: prevState.loading - 1
     }))
   }
 
   const handleFetchedMonitorsPings = (res) => {
-    if (res.status !== 200) return
+    if (res?.status !== 200) return
     setState(prevState => ({
       monitors: prevState.monitors.map(m => {
-
-        if (m.key === monitor.key) {
-          const data = res.data[monitor.key]
+        const monitorKey = Object.keys(res.data)[0]
+        if (m.key === monitorKey) {
+          const data = res.data[monitorKey]
           m = {
             ...m,
             pings: data.concat([...new Array(50 - data.length).fill({})])
@@ -75,7 +73,6 @@ const Landing = (props) => {
 
         return m
       }),
-      loading: prevState.loading - 1
     }))
   }
 

@@ -28,7 +28,7 @@ const Services = ({ monitors, ...props }) => {
                             }
                         </Heading>
                         <Date>
-                            <Text className='text-center' muted>
+                            <Text className='text-center' muted={true}>
                                 As of
                                 {' '}
                                 {
@@ -42,7 +42,7 @@ const Services = ({ monitors, ...props }) => {
                     : <>
                         <StatusIndicator noPulse up={false} />
                         <Heading className='mt-4 mb-2'>No monitors is available</Heading>
-                        <Text muted>Start using the status page by adding your first monitor in Cronitor dashboard</Text>
+                        <Text muted={true}>Start using the status page by adding your first monitor in Cronitor dashboard</Text>
                     </>
             }
         </Header>

@@ -35,7 +35,7 @@ const Uptime = ({ monitor }) => {
             <Heading variant={6} className='mb-1'>
                 Uptime
             </Heading>
-            <Text muted className='pb-2'>{calculateUptime().toFixed(3)}% uptime</Text>
+            <Text muted={true} className='pb-2'>{calculateUptime().toFixed(3)}% uptime</Text>
             <Pings>
                 {[...monitor.pings].reverse().map((activity, index) => (
                     <OverlayTrigger
