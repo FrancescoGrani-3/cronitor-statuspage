@@ -3,17 +3,19 @@ import { useTheme } from "styled-components"
 import { StyledButton } from "./index.styled"
 import Text from '../typography/Text'
 
-const Button = ({ ...props }) => {
+const Button = ({ iconRotating, loading, loadingText, icon, ...props }) => {
     const theme = useTheme()
 
     return (
         <StyledButton
-            {...props} hasChildren={props.children}
+            {...props} 
+            $hasChildren={props.children}
+            $iconRotating={iconRotating}
             disabled={props.disabled || props.loading}
         >
-            {props.icon && <span className='icon'>
+            {icon && <span className='icon'>
                 {
-                    props.icon({
+                    icon({
                         size: 17,
                         color: theme.colors.text,
                     })
@@ -21,7 +23,7 @@ const Button = ({ ...props }) => {
             </span>}
             {
                 props.children && <Text>
-                    {!props.loading ? props.children : (props.loadingText || 'Loading...')}
+                    {!loading ? props.children : (loadingText || 'Loading...')}
                 </Text>
             }
         </StyledButton>

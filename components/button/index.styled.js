@@ -13,7 +13,7 @@ export const StyledButton = styled(Button)`
     align-items: center;
     
     ${
-        p => p.hasChildren
+        p => p.$hasChildren
             ? `padding: 0.5rem 1rem;`
             : `padding: 0.5rem;`
     }
@@ -25,10 +25,10 @@ export const StyledButton = styled(Button)`
 
     .icon {
         display: flex;
-        animation: ${rotate} 1s ${p => p.iconRotating && `infinite`};
+        animation: ${rotate} 1s ${p => p.$iconRotating && `infinite`};
 
         ${
-            p => p.hasChildren && `
+            p => p.$hasChildren && `
                 margin-right: 0.75rem;
             `
         }
