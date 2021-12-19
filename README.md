@@ -31,7 +31,7 @@ Then in your Cronitor dashboard go to Settings and look for [API](https://cronit
 Clone this project: 
 
 ```bash
-git clone https://github.com/thevahidal/cronitor-statuspage.git
+git clone https://github.com/cronitorio/cronitor-statuspage.git
 ```
 
 Duplicate ```.env_``` and rename it to ```.env```, then fill the placeholder variables with your own:
