@@ -7,22 +7,17 @@ import Button from '../button';
 import StatusIndicator from './StatusIndicator';
 import Service from './Service';
 
-const Services = ({ monitors, ...props }) => {
-    const getMonitorsStatus = () => {
-        return monitors.reduce((acc, curr) => {
-            return (curr.latest_event?.event === 'req-ok') && acc
-        }, true)
-    }
+const Services = ({ monitors, status, ...props }) => {
 
     return (<Wrapper>
         <Header className='pt-4 my-5'>
             {
                 monitors.length > 0
                     ? <>
-                        <StatusIndicator noPulse up={getMonitorsStatus()} />
+                        <StatusIndicator noPulse up={status} />
                         <Heading className='mt-4 mb-2 text-center'>
                             {
-                                getMonitorsStatus()
+                                status
                                     ? 'All services are operational'
                                     : 'Some services might be down due to an incident'
                             }
