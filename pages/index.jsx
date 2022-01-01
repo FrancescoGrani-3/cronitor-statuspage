@@ -10,10 +10,17 @@ import {
 } from '../apis/monitors'
 import configs from '../configs'
 
+const getMonitorsStatus = (monitors) => {
+  return monitors.reduce((acc, curr) => {
+    return (curr.latest_event?.event === 'req-ok') && acc
+  }, true)
+}
+
 let liveStatsInterval = null;
 const Landing = (props) => {
   const [state, setState] = useSetState({
     monitors: props.data.monitors,
+    monitorsStatus: getMonitorsStatus(props.data.monitors),
     loading: false,
   })
 
@@ -46,6 +53,7 @@ const Landing = (props) => {
   const handleFetchedMonitors = (res) => {
     if (res?.status !== 200) return
     setState(prevState => ({
+      monitorsStatus: getMonitorsStatus(res.data.monitors),
       monitors: prevState.monitors.map(m => {
         const data = res.data.monitors.find(d => d.key === m.key)
         m = {
@@ -80,11 +88,12 @@ const Landing = (props) => {
     <Head>
       <title>{configs.NAME} Status Page</title>
       <meta name="description"></meta>
-      <link rel='icon' href='favicon.ico' type='image/x-icon' />
+      <link rel='icon' href={state.monitorsStatus ? 'favicon.ico' : 'favicon-down.ico'} type='image/x-icon' />
     </Head>
     <Container>
       <Services
         monitors={state.monitors}
+        status={state.monitorsStatus}
         refresh={fetchData}
         refreshLoading={state.loading}
       />
