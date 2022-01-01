@@ -20,7 +20,7 @@
 
 This project provides ability to create status pages for [Cronitor](https://Cronitor.io/) which is a simple monitoring system. Cronitor provides performance insights and uptime monitoring for cron jobs, websites, APIs and more.
 
-![Demo](public/demo.png)
+![Demo](docs/demo.png)
 
 ## Getting Started
 
