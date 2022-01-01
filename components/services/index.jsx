@@ -8,6 +8,15 @@ import StatusIndicator from './StatusIndicator';
 import Service from './Service';
 
 const Services = ({ monitors, status, ...props }) => {
+    const getAsOfTime = () => {
+        try {
+            return 'As of ' + new Intl.DateTimeFormat('en-US', {
+                dateStyle: 'full', timeStyle: 'short'
+            }).format(monitors[monitors.length - 1]?.latest_event?.stamp * 1000)
+        } catch (e) {
+            return
+        }
+    }
 
     return (<Wrapper>
         <Header className='pt-4 my-5'>
@@ -24,13 +33,7 @@ const Services = ({ monitors, status, ...props }) => {
                         </Heading>
                         <Date>
                             <Text className='text-center' muted={true}>
-                                As of
-                                {' '}
-                                {
-                                    new Intl.DateTimeFormat('en-US', {
-                                        dateStyle: 'full', timeStyle: 'short'
-                                    }).format(monitors[monitors.length - 1].latest_event.stamp * 1000)
-                                }
+                                {getAsOfTime()}
                             </Text>
                         </Date>
                     </>

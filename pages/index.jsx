@@ -50,19 +50,28 @@ const Landing = (props) => {
     })
   }
 
+  console.log(state.monitors)
+
   const handleFetchedMonitors = (res) => {
     if (res?.status !== 200) return
     setState(prevState => ({
       monitorsStatus: getMonitorsStatus(res.data.monitors),
-      monitors: prevState.monitors.map(m => {
-        const data = res.data.monitors.find(d => d.key === m.key)
-        m = {
-          ...m,
-          ...data
-        }
+      monitors: [
+        ...res.data.monitors
+          .filter(m => !prevState.monitors
+            .map(p => p.key).includes(m.key)
+          ),
+        ...prevState.monitors
+          .map(m => {
+            const data = res.data.monitors.find(d => d.key === m.key)
+            m = {
+              ...m,
+              ...data
+            }
 
-        return m
-      }),
+            return m
+          })
+      ],
     }))
   }
 
