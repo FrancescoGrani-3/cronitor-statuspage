@@ -8,7 +8,7 @@ const StatusIndicator = ({ up, size, noPulse }) => {
             case '1x':
                 return {
                     circle: 20,
-                    icon: 15
+                    icon: 12
                 };               
             case '2x':
                 return {
