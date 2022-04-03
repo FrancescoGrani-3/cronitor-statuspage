@@ -34,10 +34,10 @@ Clone this project:
 git clone https://github.com/cronitorio/cronitor-statuspage.git
 ```
 
-Duplicate ```.env_``` and rename it to ```.env```, then fill the placeholder variables with your own:
+Duplicate ```.env.sample``` and rename it to ```.env```, then fill the placeholder variables with your own:
 
 ```bash
-cp .env_ .env
+cp .env.sample .env
 nano .env
 ```
 
